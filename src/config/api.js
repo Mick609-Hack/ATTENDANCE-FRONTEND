@@ -10,8 +10,8 @@ export const myAxios = ()=>{
     const navigate = useNavigate()
 
     const instance =  axios.create({
-       baseURL: 'http://localhost:5000',
-        // baseURL: 'https://attendance-platform.onrender.com',
+    //    baseURL: 'http://localhost:5000',
+        baseURL: 'https://attendance-platform.onrender.com',
         timeout: 5000
     });
     
