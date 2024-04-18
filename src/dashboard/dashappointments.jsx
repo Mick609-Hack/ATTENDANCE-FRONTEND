@@ -93,7 +93,7 @@ export default function Appointments(){
                             </div>
 
                             <div className="absent">
-                                    <h5>Checked_out</h5>
+                                    <h5>Checked out</h5>
                                     <div className="spn">
                                     <span>{details.checked_out? details.checked_out : 0}</span><span className="red fas fa-check"></span>
                                     </div>

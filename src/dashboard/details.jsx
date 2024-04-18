@@ -17,23 +17,17 @@ export default function Details(){
             api.get(`/dashboard/records/details/${userId}`)
             .then(data => {
                 console.log(data);
-                setTimeout(()=>{
-                    setIsLoading(false)
-                },1000)
-                 setDetails({...data.data.data});
+                setIsLoading(false)
+                setDetails({...data.data.data});
             
             }).catch(error => {
                 console.log(error);
                 setDetails([])
-                setTimeout(()=>{
-                    setIsLoading(false)
-                },1000)
+                setIsLoading(false)
                 errorHandler(error)
             });
         }else{
-            setTimeout(()=>{
-                setIsLoading(false)
-            },1000)
+            setIsLoading(false)
         }
     }, [isLoading]);
  

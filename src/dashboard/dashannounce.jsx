@@ -50,6 +50,8 @@ export default function Announcement(){
         .then(data =>{
             console.log(data)
             setIsLoading(true)
+            setAnnounceHead("")
+            setAnnounceText("")
         })
         .catch(error => {
             console.log(error);
@@ -100,6 +102,7 @@ export default function Announcement(){
                             value={announceHead}
                             onChange={(e) => setAnnounceHead(e.target.value)} 
                             type="text"
+                            required
                         />
                         <div className="createannounceinputbox">
                             <input className="createannounceinput"   placeholder="Aa"

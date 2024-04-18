@@ -111,14 +111,14 @@ export default function DashNav(){
                 console.log(data);
                 setTimeout(()=>{
                     setIsLoading(false)
-                },1000)
+                },100)
                  setDetails({...data.data.data});
                  
             }).catch(error => {
                 console.log(error);
                 setTimeout(()=>{
                     setIsLoading(false)
-                },1000)
+                },100)
                 //  errorHandler(error)
         });
     },[isLoading]);
@@ -193,8 +193,8 @@ export default function DashNav(){
                                     </div>
                                     <div className="navbox">
                                         <div className="buttons">
-                                            <button onClick={()=>openModal("Check_out")} className="checkoutbtn" >Check Out <span className="fas fa-arrow-alt-circle-down"></span></button>
-                                            <button onClick={()=>openModal("Check_in")} className="checkinbtn">Check in <span className="fas fa-arrow-alt-circle-up"></span></button>
+                                            <button onClick={()=>openModal("Checkout")} className="checkoutbtn" >Check Out <span className="fas fa-arrow-alt-circle-down"></span></button>
+                                            <button onClick={()=>openModal("Checkin")} className="checkinbtn">Check in <span className="fas fa-arrow-alt-circle-up"></span></button>
                                         </div>
                                         <div className="appointments">
                                             <button  className="appointmentbtn" ><span className="far fa-calendar-alt"></span><NavLink to = "appointments">APPOINTMENTS</NavLink></button>  

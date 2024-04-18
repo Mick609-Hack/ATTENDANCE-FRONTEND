@@ -12,7 +12,7 @@ export default function Login(props){
     const {login, isLoading} = useLogin()
 
     const handleSubmit = async (e) => {
-        e.preventDefault();    
+        e.preventDefault(); 
         console.log(email, password)
         await login(email,password)
         
@@ -38,7 +38,7 @@ export default function Login(props){
                             onChange={(e) => setPassword(e.target.value)} 
                             type="password"
                         />
-                        <button type="submit" className="btn">Submit</button>
+                         <button className="btn">{isLoading?  <span className="fas fa-spinner spin"></span> : "Submit" }</button>
                         <p className="noaccount">Don't Have An Account? <NavLink to = "signup" >Sign up</NavLink> </p>
                     </form>
                 </div>
@@ -72,7 +72,7 @@ export default function Login(props){
                             onChange={(e) => setPassword(e.target.value)} 
                             type="password"
                         />
-                        <button type="submit" className="btn">Submit</button>
+                        <button className="btn">{isLoading?  <span className="fas fa-spinner spin"></span> : "Submit" }</button>
                         <p className="noaccount">Don't Have An Account? <NavLink to = "signup" >Sign up</NavLink> </p>
                     </form>
                 </div>

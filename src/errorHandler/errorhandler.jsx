@@ -23,15 +23,21 @@ export const errorHandler = (error) =>{
         const { status } = error.response;
         const {msg} = error.response.data
 
-        if(status === 400) {
-            let errormsg = ""
-            error.response.data.error.forEach(error => {
-                errormsg += error.msg + ',';
-            });
+        // if(status === 400) {
+        //     let errormsg = ""
+        //     error.response.data.error.forEach(error => {
+        //         errormsg += error.msg + ',';
+        //     });
              
-            console.log(errormsg);
-            toast.error(<Msg msg={errormsg}/>)
+        //     console.log(errormsg);
+        //     toast.error(<Msg msg={errormsg}/>)
 
+        // }
+         
+         
+        if(status === 400){
+            const m = error.response.data.error[0].msg
+            toast.error(m)
         }
     
         if(status=== 404) {

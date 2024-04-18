@@ -2,9 +2,12 @@ import React, { useState} from "react"
 import { myAxios } from "../config/api";
 import { successHandler } from "../successHandler/successhandler";
 import { errorHandler } from "../errorHandler/errorhandler";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function StudentUpdateDetails(){
     const api = myAxios()
+    const {user} = useAuthContext()
+    const currentUser = user.user
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         firstname:"" , lastname:"" , email:"" , school:"", phone_no:"" , course:"", location:"" , duration:"",password:""
@@ -50,7 +53,7 @@ export default function StudentUpdateDetails(){
             <div className="studentdashboardright">
                 <div className="details">
                     <div className="welcome">
-                        <h3>Hello Michael! Update Your Details Here</h3>
+                        <h3>Hello {currentUser.firstname}! Update Your Details Here</h3>
                     </div>
                     <div className="detailsformbx">
                         <form onSubmit={(e) => handleSubmit(e)} className="form" action="">

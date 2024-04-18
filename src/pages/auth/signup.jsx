@@ -1,13 +1,14 @@
 import React,{useState}  from "react";
 import formimg from "@/assets/Cover-3.1.jpg"
 import logo from "../../assets/HIITLOGO.png"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { myAxios } from "../../config/api";
 import { errorHandler } from "../../errorHandler/errorhandler";
 import { successHandler } from "../../successHandler/successhandler";
 
 export default function SignUp() {
     const api = myAxios()
+    const navigate = useNavigate();
    const [isLoading , setIsLoading] = useState(false)
    const [formData, setFormData] = useState({
       firstname:"" , lastname:"" , email:"" , school:"", phone_no:"" , course:"", location:"" , duration:"",password:""
@@ -35,17 +36,14 @@ export default function SignUp() {
             firstname, lastname,email, school, phone_no, course, location,duration,password
         }).then( data  => {
             console.log(data, "data");
-            setTimeout(() => {
-              setIsLoading(false) 
-            }, 1000);
+            setIsLoading(false) 
             successHandler(data)
-            }
+            navigate("/")
+         }
         )
         .catch(error=>{
             console.log(error);
-            setTimeout(() => {
-                setIsLoading(false) 
-              }, 1000);
+            setIsLoading(false) 
             errorHandler(error)
         });
    }
@@ -59,22 +57,22 @@ export default function SignUp() {
                     <form onSubmit={(e) => handleSubmit(e)} className="form" action="">
                         <h3>SignUp</h3>
                         <label htmlFor="">First Name</label> <br />
-                        <input name="firstname" value={formData.firstname} onChange={(e)=> handleChange(e)} type="text"/> <br />
+                        <input name="firstname" value={formData.firstname} onChange={(e)=> handleChange(e)} type="text" required/> <br />
 
                         <label htmlFor="">Last Name</label> <br />
-                        <input name="lastname" value={formData.lastname} onChange={(e)=> handleChange(e)} type="text"/><br />
+                        <input name="lastname" value={formData.lastname} onChange={(e)=> handleChange(e)} type="text" required/><br />
 
                         <label htmlFor="">Email</label> <br />
-                        <input name="email" value={formData.email} onChange={(e)=> handleChange(e)} type="email"/><br />
+                        <input name="email" value={formData.email} onChange={(e)=> handleChange(e)} type="email" required/><br />
 
                         <label htmlFor="">School (University/Polytechnic)</label> <br />
-                        <input name="school" value={formData.school} onChange={(e)=> handleChange(e)} type="text"/><br />
+                        <input name="school" value={formData.school} onChange={(e)=> handleChange(e)} type="text" required/><br />
 
                         <label htmlFor="">Phone No</label> <br />
-                        <input name="phone_no" value={formData.phone_no} onChange={(e)=> handleChange(e)} type="number"/> <br />
+                        <input name="phone_no" value={formData.phone_no} onChange={(e)=> handleChange(e)} type="number" required/> <br />
 
                         <label htmlFor="">Registered Course</label> <br />
-                        <input name="course" value={formData.course} onChange={(e)=> handleChange(e)} type="text"/>
+                        <input name="course" value={formData.course} onChange={(e)=> handleChange(e)} type="text" required/>
 
                         <label htmlFor="">Location (HIIT branch)</label> <br />
                         <select name="location" onChange={(e)=> handleChange(e)}>
@@ -87,10 +85,10 @@ export default function SignUp() {
                         </select>
 
                         <label htmlFor="">Duration</label> <br />
-                        <input name="duration" value={formData.duration} onChange={(e)=> handleChange(e)} type="text"/>
+                        <input name="duration" value={formData.duration} onChange={(e)=> handleChange(e)} type="text" required/>
 
                         <label htmlFor="">Password</label> <br />
-                        <input name="password" value={formData.password} onChange={(e)=> handleChange(e)} type="Password"/>
+                        <input name="password" value={formData.password} onChange={(e)=> handleChange(e)} type="Password" required/>
 
                         <button className="btn">{isLoading?  <span className="fas fa-spinner spin"></span> : "Submit" }</button>
                         <p className="noaccount">Already Have An Account? <NavLink to = "/" >Log In</NavLink> </p>

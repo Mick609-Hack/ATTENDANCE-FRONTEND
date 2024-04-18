@@ -5,10 +5,11 @@ import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = () =>{
     const api = myAxios()
-    const [isLoading , setIsLoading] = useState(null)
+    const [isLoading , setIsLoading] = useState(false)
     const {dispatch , user} = useAuthContext()
 
     const login =  async (email,password) =>{
+         setIsLoading(true)
          api.post('/login', {
             email, 
             password
@@ -18,12 +19,17 @@ export const useLogin = () =>{
             localStorage.setItem("user" , JSON.stringify(data))
             
             dispatch({type:"LOGIN" , payload: data})
+            setIsLoading(false)
             
         }
         )
         .catch(error=>{
         console.log(error);
         errorHandler(error)
+        setTimeout(()=>{
+            setIsLoading(false)
+        },100)
+         
         });
     }
 

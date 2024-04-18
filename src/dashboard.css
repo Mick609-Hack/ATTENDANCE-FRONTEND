@@ -782,6 +782,7 @@ body{
 
 .studentDashboardBox{
     width: 20%;
+    border: solid red 1px;
     height: 100%;
     position: fixed;
     display: flex;
@@ -1098,7 +1099,7 @@ body{
 
 @media(max-width:450px) {
     .formbx{
-        width: 60%;
+        width: 85%;
         margin-top: 10%;
     }
 }

@@ -10,8 +10,8 @@ export const myAxios = ()=>{
     const navigate = useNavigate()
 
     const instance =  axios.create({
-    //    baseURL: 'http://localhost:5000',
-        baseURL: 'https://attendance-platform.onrender.com',
+       baseURL: 'http://localhost:5000',
+        // baseURL: 'https://attendance-platform.onrender.com',
         timeout: 5000
     });
     
@@ -40,6 +40,7 @@ export const myAxios = ()=>{
             console.log('dddddddddd');
             errorHandler(error)
              dispatch({type:"LOGOUT"})
+             localStorage.removeItem("user")
         }
         return Promise.reject(error);
     });
