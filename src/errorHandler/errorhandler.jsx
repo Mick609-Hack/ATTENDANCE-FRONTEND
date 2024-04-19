@@ -19,7 +19,7 @@ const  Msg = ({ msg }) => {
 export const errorHandler = (error) =>{
 
     if(error.response) {
-
+       const toastId = "my-error-toast"
         const { status } = error.response;
         const {msg} = error.response.data
 
@@ -34,24 +34,25 @@ export const errorHandler = (error) =>{
 
         // }
          
-         
-        if(status === 400){
-            const m = error.response.data.error[0].msg
-            toast.error(m)
-        }
-    
-        if(status=== 404) {
-            toast.error(msg)
-        }
-        if(status === 401) {
-            toast.error(msg)
-        }
-        if(status === 409) {
-            toast.error(msg)
-        }
-        // if(status === 200 ) {
-        //     toast.success(msg)
-        //  }
+        if(!toast.isActive(toastId)){
+            toast.dismiss()
+            console.log(toastId)
+            if(status === 400){
+                const m = error.response.data.error[0].msg
+                toast.error(m, {toastId})
+            }
+        
+            if(status=== 404) {
+                toast.error(msg , {toastId})
+            }
+            if(status === 401) {
+                toast.error(msg , {toastId})
+            }
+            if(status === 409) {
+                toast.error(msg , {toastId})
+            }
+        }     
+       
     } else {
         toast.info(error.message);
     }
