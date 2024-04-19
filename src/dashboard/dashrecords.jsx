@@ -41,51 +41,58 @@ export default function Records(){
     }, [isLoading]);
 
     return(
+    <>
         <div>
-        
             {currentPath === "/dashboard/records" &&
-            <div>
-                <div className="recordhead">
-                    <div className="left">
-                        <h3>Attendance</h3>
-                        <p>Month - March</p>
+                isLoading?( 
+                    <div className="spinbox">
+                       <span className="fas fa-spinner spin"></span>
                     </div>
-                    <div className="middle">
-                        <h2>RECORDS</h2>
+           )
+           : 
+           (
+                <div>
+                    <div className="recordhead">
+                        <div className="left">
+                            <h3>Attendance</h3>
+                            <p>Month - March</p>
+                        </div>
+                        <div className="middle">
+                            <h2>RECORDS</h2>
+                        </div>
+                        <div className="right">
+                            <label htmlFor="">Date:</label>
+                            <input value={date} onChange={(e)=> setDate(e.target.value) + setIsLoading(true)} type="date" />
+                        </div>
                     </div>
-                    <div className="right">
-                        <label htmlFor="">Date:</label>
-                        <input value={date} onChange={(e)=> setDate(e.target.value) + setIsLoading(true)} type="date" />
+                    <div className="recordbody">
+                        <div className="recordheader">
+                                <ul>
+                                    <li>Id</li>
+                                    <li>Student</li>
+                                    <li>Date</li>
+                                    <li>Check-in Time</li>
+                                    <li>Check-out Time</li>
+                                    <li>Details</li>
+                                </ul>
+                        </div>
+                        {records.map(records=>(
+                        <div className="record" key={records.id}>
+                                <span>{records.user.reg_id}</span>
+                                <span>{records.user.firstname} {records.user.lastname}</span>
+                                <span>{records.date}</span>
+                                <span>{records.createdAt}</span>
+                                <span>{records.updatedAt}</span>
+                                <span><button className="status"><NavLink to={`details/${records.userId}`}>View</NavLink></button></span>
+                        </div> 
+                        ))}
                     </div>
                 </div>
-                <div className="recordbody">
-                    <div className="recordheader">
-                            <ul>
-                                <li>Id</li>
-                                <li>Student</li>
-                                <li>Date</li>
-                                <li>Check-in Time</li>
-                                <li>Check-out Time</li>
-                                <li>Details</li>
-                            </ul>
-                    </div>
-                    {records.map(records=>(
-                    <div className="record" key={records.id}>
-                            <span>{records.user.reg_id}</span>
-                            <span>{records.user.firstname} {records.user.lastname}</span>
-                            <span>{records.date}</span>
-                            <span>{records.createdAt}</span>
-                            <span>{records.updatedAt}</span>
-                            <span><button className="status"><NavLink to={`details/${records.userId}`}>View</NavLink></button></span>
-                    </div> 
-                    ))}
-                </div>
-            </div>
-            }
+            )}
             <Outlet/>
            
         </div>
-        
+    </>   
     )
 }
 

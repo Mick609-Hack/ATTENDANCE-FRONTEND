@@ -9,28 +9,35 @@ import { successHandler } from "../successHandler/successhandler"
 const MyModal = (props) =>{
     const api = myAxios()
     const [ regId, setRegId ] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
     const handleSubmit = async (e) => {
         e.preventDefault();    
-        console.log(regId)
-        {props.action === "Check_in" &&
+        setIsLoading(true)
+        console.log(props.action)
+        {props.action === "Checkin" &&
             api.post("/check_in" ,{
                 regId
             })
             .then(data =>{
                 console.log(data)
+                setIsLoading(false)
                 successHandler(data)
                 setTimeout(()=>{
                     window.location.reload()
                     setRegId("")
-                },1000)
+                },100)
                 
             })
             .catch(error=>{
                 console.log(error);
+                setTimeout(()=>{
+                    setIsLoading(false)
+                },1000)
+                
                 errorHandler(error)
             });
          }
-         {props.action === "Check_out" &&
+         {props.action === "Checkout" &&
             api.put("/check_out",{
                 regId
             })
@@ -41,12 +48,13 @@ const MyModal = (props) =>{
                 setTimeout(()=>{
                     window.location.reload()
                     setRegId("")
-                },1000)
+                },100)
                 
                 
             })
             .catch(error=>{
                 console.log(error);
+                setIsLoading(false)
                 errorHandler(error)
             });
          }  
@@ -64,8 +72,10 @@ const MyModal = (props) =>{
                             value={regId}
                             onChange={(e) => setRegId(e.target.value)} 
                         /> <br />
-
-                        <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                        
+                        <button onClick={(e) => handleSubmit(e)}>
+                            {isLoading?  <span style={{color:"white"}} className="fas fa-spinner spin"></span> : "Submit" }
+                        </button>
                 
                 </Modal>
         </div>
