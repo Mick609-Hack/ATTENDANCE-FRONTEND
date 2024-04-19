@@ -77,9 +77,8 @@ function App() {
           >
             <Route path="announcement" element={<Announcement />} />
             <Route path="appointments" element={<Appointments />} />
-            <Route path="records" element={<Records />}>
-              <Route path="details/:userId" element={<Details />}/>
-            </Route>
+            <Route path="records" element={<Records />}/>
+            <Route path="records/details/:userId" element={<Details />}/>
             <Route path="records/details/:userId/attendance/:userId" element={<UserAttendance/>}/>
           </Route>
         </Route>
