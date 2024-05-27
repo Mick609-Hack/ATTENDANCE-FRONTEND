@@ -14,7 +14,7 @@ export default function StudentDashboardLayout(){
     const expandNav = async (e)=>{
         setIsExpands(!expands)
     }
-    console.log(expands)
+    // console.log(expands)
 
     return(
         <div>

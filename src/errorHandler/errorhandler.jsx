@@ -45,10 +45,16 @@ export const errorHandler = (error) =>{
             if(status=== 404) {
                 toast.error(msg , {toastId})
             }
+            if(status=== 415) {
+                toast.error(msg , {toastId})
+            }
             if(status === 401) {
                 toast.error(msg , {toastId})
             }
             if(status === 409) {
+                toast.error(msg , {toastId})
+            }
+            if(status === 403) {
                 toast.error(msg , {toastId})
             }
         }     

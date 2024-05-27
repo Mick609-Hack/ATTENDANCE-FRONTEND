@@ -12,6 +12,7 @@ export default function Details(){
     const{userId} = useParams()
     
     const currentUser = user.user
+    console.log(currentUser)
     useEffect(() => {
         if(currentUser.role === "admin"){
             api.get(`/dashboard/records/details/${userId}`)
@@ -51,7 +52,20 @@ export default function Details(){
                         </button>
                     </div>
                     <div className="details">
-                        <div className="dflex">
+                        <div className="passportbox">
+                            <div className="passport">
+                               <img className="passportimg" src={`http://localhost:5000/${currentUser.role === "admin"? details.photo_path : currentUser.photo_path}`} alt="" />
+                            </div>
+                            <div className="d">
+                                 <h2 className="dtext">{currentUser.role === "admin"?
+                                      details.lastname +" "+ details.firstname + " "+ (details.role)
+                                     : 
+                                     currentUser.lastname +" "+ currentUser.firstname + " "+ (currentUser.role)}
+                                </h2> <br />
+                                 <p>{currentUser.role === "admin"? details.reg_id : currentUser.reg_id}</p>
+                            </div>  
+                        </div>
+                        <div className="dflex h">
                             <div className="dets">
                                 <label>ID</label> <br/> <br />
                                 <span>{currentUser.role === "admin"? details.reg_id : currentUser.reg_id}</span>
@@ -65,7 +79,7 @@ export default function Details(){
                                 <span>{currentUser.role === "admin"? details.lastname : currentUser.lastname}</span>
                             </div>
                         </div>
-                        <div className="dflex m">
+                        <div className="dflex">
                             <div className="dets">
                                 <label>Email</label> <br/> <br />
                                 <span>{currentUser.role === "admin"? details.email : currentUser.email}</span>

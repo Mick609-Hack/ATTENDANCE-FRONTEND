@@ -11,7 +11,7 @@ export const myAxios = ()=>{
 
     const instance =  axios.create({
     //    baseURL: 'http://localhost:5000',
-        baseURL: 'https://attendance-platform.onrender.com',
+         baseURL: 'https://attendance-platform.onrender.com',
         timeout: 5000
     });
     

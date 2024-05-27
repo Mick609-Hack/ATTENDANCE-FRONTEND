@@ -10,30 +10,50 @@ export default function SignUp() {
     const api = myAxios()
     const navigate = useNavigate();
    const [isLoading , setIsLoading] = useState(false)
+   const [file, setFile] = useState({})
    const [formData, setFormData] = useState({
-      firstname:"" , lastname:"" , email:"" , school:"", phone_no:"" , course:"", location:"" , duration:"",password:""
+      firstname:"" , lastname:"" , email:"" , school:"", phone_no:"" , course:"", location:"" ,image:"",  duration:"", password:""
    })
 
-   const {firstname,lastname,email,school,phone_no,course,location,duration,password} = formData
+   const {firstname,lastname,email,school,phone_no,course,location,image,duration,password} = formData
   
     // console.log(location)
 
     
    function handleChange(e){
-        setFormData(prevFormData =>{
-            return{
-                ...prevFormData,
-                [e.target.name] : e.target.value
-            }
+        if (e.target.name === "image") {
+            setFile({
+                [e.target.name]: e.target.files[0]
+            });
+        }else{
+            setFormData(prevFormData =>{
+                return{
+                    ...prevFormData,
+                    [e.target.name] : e.target.value
+                }
 
-        })
+            })
+        }
    }
 
    const handleSubmit = (e) => {
         e.preventDefault();
+
+        const mainFormData = new FormData()
          setIsLoading(true)
-        api.post("/signup", {
-            firstname, lastname,email, school, phone_no, course, location,duration,password
+        
+         Object.entries(formData).forEach(([key, value]) => {
+            mainFormData.append(key, value);
+        });
+
+        mainFormData.append("file", file.image);
+
+        console.log(mainFormData)
+        api.post("/signup",
+            mainFormData,
+        //    firstname, lastname,email, school, phone_no, course, location,duration,password,
+        {
+          headers:{'Content-Type' : 'multipart/form-data'} 
         }).then( data  => {
             console.log(data, "data");
             setIsLoading(false) 
@@ -54,7 +74,7 @@ export default function SignUp() {
         <div>
             <div className="formbox desktop">
                 <div className="formbx">
-                    <form onSubmit={(e) => handleSubmit(e)} className="form" action="">
+                    <form onSubmit={(e) => handleSubmit(e)} className="form" encType="multipart/form-data" action="">
                         <h3>SignUp</h3>
                         <label htmlFor="">First Name</label> <br />
                         <input name="firstname" value={formData.firstname} onChange={(e)=> handleChange(e)} type="text" required/> <br />
@@ -87,6 +107,9 @@ export default function SignUp() {
                         <label htmlFor="">Duration</label> <br />
                         <input name="duration" value={formData.duration} onChange={(e)=> handleChange(e)} type="text" required/>
 
+                        <label htmlFor="">Add Your Image</label> <br />
+                        <input name="image"  onChange={(e)=> handleChange(e)} type="file" required/>
+
                         <label htmlFor="">Password</label> <br />
                         <input name="password" value={formData.password} onChange={(e)=> handleChange(e)} type="Password" required/>
 
@@ -108,7 +131,7 @@ export default function SignUp() {
                     </div>  
                 </div>
                 <div className="formbx">
-                <form onSubmit={(e) => handleSubmit(e)} className="form" action="">
+                <form onSubmit={(e) => handleSubmit(e)} className="form" encType="multipart/form-data" action="">
                         <h3>SignUp</h3>
                         <label htmlFor="">First Name</label> <br />
                         <input name="firstname" value={formData.firstname} onChange={(e)=> handleChange(e)} type="text"/> <br />
@@ -140,6 +163,9 @@ export default function SignUp() {
 
                         <label htmlFor="">Duration</label> <br />
                         <input name="duration" value={formData.duration} onChange={(e)=> handleChange(e)} type="text"/>
+
+                        <label htmlFor="">Add Your Image</label> <br />
+                        <input name="image"  onChange={(e)=> handleChange(e)} type="file" required/>
 
                         <label htmlFor="">Password</label> <br />
                         <input name="password" value={formData.password} onChange={(e)=> handleChange(e)} type="Password"/>
