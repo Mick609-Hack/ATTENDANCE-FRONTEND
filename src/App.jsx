@@ -24,6 +24,11 @@ import StudentAnnounce from "./dashboard/studentannounce";
 import { AuthContext } from "../src/context/authContext";
 import { useContext } from "react";
 import UserAttendance from "./dashboard/userAttendance";
+import StudentList from "./dashboard/studentList";
+import AssessmentDetail from "./dashboard/assessmentdetails";
+import AssessVerified from "./dashboard/assessmentverified";
+import VerifyForm from "./dashboard/assessmentverification";
+import AssessForm from "./dashboard/assessform";
 
 Modal.setAppElement("#root")
 
@@ -75,6 +80,11 @@ function App() {
               )
             }
           >
+             <Route path="assessment/assess/form/:regId" element={<AssessForm/>}/>
+            <Route path="assessment/assess/:regId" element={<AssessVerified/>}/>
+            <Route path="assessment/assess" element={<VerifyForm/>}/>
+            <Route path="assessment" element={<AssessmentDetail/>}/>
+            <Route path="students" element={<StudentList/>}/>
             <Route path="announcement" element={<Announcement />} />
             <Route path="appointments" element={<Appointments />} />
             <Route path="records" element={<Records />}/>

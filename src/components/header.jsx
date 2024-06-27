@@ -16,7 +16,7 @@ export default function Header(props){
              <div className="headernav">
                   <div className="left">
                       <img className="logo" src={logo} alt="" />
-                      <h4>Siwes Attendance Portal</h4>
+                      <h4>SIWES+ Attendance Portal</h4>
                   </div>
                   <div className="right">
                      <ul>

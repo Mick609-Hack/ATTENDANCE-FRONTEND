@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
-import { useLocation } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
+import Linkify from 'react-linkify';
 import {myAxios} from "../config/api";
 import { errorHandler } from "../errorHandler/errorhandler";
 
@@ -14,6 +15,7 @@ export default function Announcement(){
     const [announcements, setAnnouncement] = useState([]);
     const [announceText, setAnnounceText] = useState("");
     const [announceHead, setAnnounceHead] = useState("");
+    const [test, setTest] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [date, setDate] = useState(formattedDate) 
  
@@ -28,7 +30,7 @@ export default function Announcement(){
                 setTimeout(()=>{
                     setIsLoading(false)
                 },1000)
-                 setAnnouncement([...data.data.data]);
+                setAnnouncement([...data.data.data]);
                  
             }).catch(error => {
                 console.log(error);
@@ -59,7 +61,7 @@ export default function Announcement(){
         });
         
     }
-
+    
     return(
         <> 
           { isLoading?( 
@@ -90,7 +92,7 @@ export default function Announcement(){
                             <div className="right">
                                 <h3>{announce.announcehead}</h3>
                                 <span>
-                                    {announce.announcetext}
+                                    <Linkify>{announce.announcetext}</Linkify>
                                 </span>
                             </div>
                         </div>
@@ -121,3 +123,83 @@ export default function Announcement(){
         
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Ignore This LOL
+
+//  const linkRegEx = "(https:\/\/www\. |http:\/\/www\. |https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?"
+    // const link = data.data.data.match(linkRegEx)
+    // const linkedResponse = data.replace(linkRegEx, `<a href="${link}>${link}</a>`)
+     
+    // const linkRegEx = /https?:\/\/[^\s]+/g;
+    // const newAnnouncements = []
+    
+    // announcements.forEach(announce=>{
+    //     const link = announce.announcetext.match(linkRegEx)
+
+    //     if (link){
+    //             console.log("yessssss")
+    //             // console.log(link)
+    //             const linkedResponse = announce.announcetext.replace(linkRegEx, `<a href="${link}>${link}</a>`)
+    //             //  console.log(announcements)
+    //              newAnnouncements.push()
+    //         }else{
+    //             console.log("nadaaaaaaa")
+    //         }
+
+    //     // if(link){
+    //     //     const linkedResponse = announce.announcetext.replace("boy", `<a href="fuckkkkkk${link[0]}>${link[0]}</a>`) 
+    //     //     //  console.log(linkedResponse)
+    //     //     announce.announcetext = linkedResponse
+    //     //     // console.log(announce.announcetext)
+    //     //      const linkObj = {link_key : linkedResponse}
+    //     //      newAnnouncements.push(linkObj);
+    //     // }
+    // })
+    //         announcements.push(...newAnnouncements);
+    

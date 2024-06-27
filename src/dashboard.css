@@ -438,6 +438,122 @@ body{
     justify-content: center;
 }
 
+.assessmentheader{
+    margin: 0px auto;
+    width:fit-content;
+    background-color: #35386f;
+    color: white;
+    border: white solid 1px;
+    height: 50px;
+    box-shadow: 0px 1px 3px #35386f;
+    display: flex;
+    align-items: center;
+}
+
+.assessmentheader > ul{
+  display: flex;
+  width: fit-content;
+  align-items: center;
+}
+
+.assessmentheader > ul > li {
+    list-style-type: none;
+    width: 150px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: small;
+    border-right: solid 2px lightgray;
+}
+
+.assessment{
+   margin: 0px auto;
+   width: fit-content;
+   height: 30px;
+   border-bottom: 1.2px solid lightgray;
+   padding: 20px 0px;
+   display: flex;
+   align-items: center;
+}
+
+.assessment > ul{
+    display: flex;
+    width: fit-content;
+    align-items: center;
+  }
+
+.assessment > ul > li{
+   list-style-type: none;
+   display: flex;
+   width: 150px;
+   height: 40px;
+   align-items: center;
+   color: #35386f;
+   justify-content: center;
+   font-size: small;
+   border-right: solid 1px lightgray;
+}
+
+.verifybox{
+    border: solid 1px #35386f;
+    background-color:whitesmoke;
+    height:250px;
+    width: 35%;
+    margin: auto;
+    margin-top: 7%;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.verifybox >input{
+    width: 60%;
+    height: 35px;
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 10px;
+    border: solid 1px #35386f ;
+    background-color: white;
+}
+
+.verifybox >input::placeholder{
+    padding-left: 10px;
+}
+.verifybox > h2{
+    padding: 2%;
+    color: #35386f;
+    font-weight: bolder;
+}
+
+.verifybox >button{
+    width: 40%;
+    height: 33px;
+    margin: auto;
+    display: block;
+    margin-top: 5%;
+    background-color: #35386f;
+    color: white;
+    border: solid 1px #35386f;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.assessformbox{
+    width: 50%;
+    height: 400px;
+    border: solid 1px #35386f;
+    border-radius: 5px;
+    margin-inline: auto;
+}
+
+.assessform > .assessflex{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+}
+
+
 .modal{
     border: solid 1px #35386f;
     background-color:whitesmoke;
