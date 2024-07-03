@@ -14,7 +14,7 @@ export default function AssessVerified(){
     useEffect(() => {
         api.get(`/verifyassess/${regId}`)
             .then(data => {
-                console.log(data , "olorun miii");
+               
                 setTimeout(()=>{
                     setUser({...data.data.data})
                     setIsLoading(false)

@@ -48,14 +48,14 @@ export default function SignUp() {
 
         mainFormData.append("file", file.image);
 
-        console.log(mainFormData)
+        // console.log(mainFormData)
         api.post("/signup",
             mainFormData,
         //    firstname, lastname,email, school, phone_no, course, location,duration,password,
         {
           headers:{'Content-Type' : 'multipart/form-data'} 
         }).then( data  => {
-            console.log(data, "data");
+            // console.log(data, "data");
             setIsLoading(false) 
             successHandler(data)
             navigate("/")
