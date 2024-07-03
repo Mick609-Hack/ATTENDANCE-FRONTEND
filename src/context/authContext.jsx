@@ -20,7 +20,7 @@ export default function AuthContextProvider({children}){
     const [authState, dispatch] = useReducer(AuthReducer, hydrateUser())
     const [isAuthenticated, setIsAuthenticated] = useState(false)
    
-     console.log("authcontextstate" , authState)
+    //  console.log("authcontextstate" , authState)
     useEffect(()=>{
         const user = JSON.parse(localStorage.getItem("user"))
         if(user){
