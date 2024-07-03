@@ -75,9 +75,11 @@ export default function Appointments(){
                         <div className="right">
                             <div className="users">
                                     <h5>Total Students</h5>
-                                    <div className="spn">
-                                    <span>{details.users? details.users : 0}</span><span className="fas fa-user"></span>
-                                    </div>
+                                    <NavLink to="/dashboard/students" style={{textDecoration: "none"}}>
+                                        <div className="spn">
+                                        <span>{details.users? details.users : 0 }</span><span className="fas fa-user"></span>
+                                        </div>
+                                    </NavLink>
                             </div>
                             <div className="present">
                                     <h5>Present</h5>
